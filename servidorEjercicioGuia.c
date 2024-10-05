@@ -6,8 +6,9 @@
 #include <netinet/in.h>
 #include <stdio.h>
 
-<<<<<<< HEAD
-int es_palindromo(const char *nombre) {
+//funcion que comprueba si es palindromo 
+int es_palindromo(const char *nombre) 
+{
 	int longitud = strlen(nombre);
 	for (int i = 0; i < longitud / 2; i++) {
 		if (nombre[i] != nombre[longitud - i - 1]) {
@@ -17,8 +18,14 @@ int es_palindromo(const char *nombre) {
 	return 1; // Es pali­ndromo
 }
 
-=======
->>>>>>> a4fa14dea76c39cee6836acdf7760c2e708ffd92
+//funcion que devuelve el nombre en mayusculas
+void convertir_a_mayusculas(char *nombre) 
+{
+	for (int i = 0; nombre[i]; i++) {
+		nombre[i] = toupper(nombre[i]);
+	}
+}
+
 int main(int argc, char *argv[])
 {
 	int sock_conn, sock_listen, ret;
@@ -87,7 +94,7 @@ int main(int argc, char *argv[])
 				strcpy (respuesta,"SI");
 				else
 					strcpy (respuesta,"NO");
-<<<<<<< HEAD
+
 			else if (codigo == 3) { // Verificar si es pali­ndromo
 				if (es_palindromo(nombre)) 
 				{
@@ -98,10 +105,13 @@ int main(int argc, char *argv[])
 					strcpy(respuesta, "NO");
 				}
 			}
-			else //decir si es alto
-=======
+			
+			else if (codigo == 4) { // devolver nombre en mayusculas
+				convertir_a_mayusculas(nombre);
+				sprintf(respuesta, "%s", nombre);
+			}
+
 				else //decir si es alto
->>>>>>> a4fa14dea76c39cee6836acdf7760c2e708ffd92
 				{
 					p = strtok(NULL, "/");
 					float altura =  atof (p);

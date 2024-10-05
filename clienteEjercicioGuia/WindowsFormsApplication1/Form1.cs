@@ -61,7 +61,7 @@ namespace WindowsFormsApplication1
                     else
                         MessageBox.Show("Tu nombre NO es bonito. Lo siento.");
                 }
-<<<<<<< HEAD
+
             else if (palindromo.Checked)
             {
                 // Quiere saber si el nombre es palindromo
@@ -81,9 +81,24 @@ namespace WindowsFormsApplication1
                 else
                     MessageBox.Show("Tu nombre NO es palindromo.");
             }
+            
+            else if (mayusculas.Checked)
+            {
+                // Quiere saber si el nombre es palindromo
+                string mensaje = "4/" + nombre.Text;
+                // Enviamos al servidor el nombre tecleado
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
 
-=======
->>>>>>> a4fa14dea76c39cee6836acdf7760c2e708ffd92
+                //Recibimos la respuesta del servidor
+                byte[] msg2 = new byte[80];
+                server.Receive(msg2);
+                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+
+                MessageBox.Show($"Tu nombre en mayúsculas es: {mensaje}");
+
+            }
+
             else
             {
                 // Enviamos nombre y altura
@@ -138,13 +153,16 @@ namespace WindowsFormsApplication1
             server.Shutdown(SocketShutdown.Both);
             server.Close();
         }
-<<<<<<< HEAD
+
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
 
         }
-=======
->>>>>>> a4fa14dea76c39cee6836acdf7760c2e708ffd92
+
+        private void radioButton2_CheckedChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
