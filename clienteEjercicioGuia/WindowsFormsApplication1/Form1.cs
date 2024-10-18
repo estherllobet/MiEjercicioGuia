@@ -102,7 +102,7 @@ namespace WindowsFormsApplication1
             else
             {
                 // Enviamos nombre y altura
-                string mensaje = "3/" + nombre.Text + "/" + alturaBox.Text;
+                string mensaje = "5/" + nombre.Text + "/" + alturaBox.Text;
                 //Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
@@ -163,6 +163,19 @@ namespace WindowsFormsApplication1
         private void radioButton2_CheckedChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //pedir numero de servicios realizados
+            string mensaje = "6/";
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+            //Recibimos respuesta del servidor 
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+            contlbl.Text=mensaje;
         }
     }
 }
